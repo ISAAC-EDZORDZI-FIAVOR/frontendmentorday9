@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  </head>
+  <body>
+    <main class="container">
+      <!-- Sign-up form start -->
+      <div class="sinUp-content">
+        <h1>Stay updated!</h1>
+        <p>Join 60,000+ product managers receiving monthly updates on:</p>
+        <ul>
+          <li>Product discovery and building what matters</li>
+          <li>Measuring to ensure updates are a success</li>
+          <li>And much more!</li>
+        </ul>
+        <form>
+          <div class="message">
+            <label for="email">Email address</label>
+            <p class="validate1">Valid email required</p>
+          </div>
+          <input
+            class=""
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email@company.com"
+          />
+          <button type="button" onclick="validateEmail();">
+            Subscribe to monthly newsletter
+          </button>
+        </form>
+      </div>
+      <!-- Sign-up form end -->
+      <div class="img-container">
+        <img class="removeDesktop"
+          src="./assets/images/illustration-sign-up-desktop.svg"
+          alt="illustration signup Picture"
+        />
+        <img class="removeMobile"
+          src="./assets/images/illustration-sign-up-mobile.svg"
+          alt="illustration signup Picture"
+        />
+      </div>
+
+      <div class="success-message">
+        <img class="sucessimg" src="assets/images/icon-success.svg" alt="">
+        <h1>Thanks for subscribing!</h1>
+        <p>
+          A confirmation email has been sent to
+          <span id="confirmation-email"></span>.
+        </p>
+        <p class="successdown">
+          Please open it and click the button inside to confirm your
+          subscription.
+        </p>
+        <button class="btnsuccess">Dismiss message</button>
+      </div>
+    </main>
+
+   
+
+    <script>
+      function validateEmail() {
+        let inputText = document.getElementById("email");
+        let alertMessage = document.querySelector(".validate1");
+        let successMessage = document.querySelector(".success-message");
+        let removeContent1 = document.querySelector(".sinUp-content");
+        let removeContent2 = document.querySelector(".img-container");
+        let container1 = document.querySelector(".container");
+
+        let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (inputText.value.match(mailFormat)) {
+          removeContent1.style.display = "none";
+          removeContent2.style.display = "none";
+          // removeContent2.classList.remove("img-container");
+          alertMessage.style.display = "none";
+          successMessage.style.display = "block";
+          container1.style.width = "400px";
+          document.getElementById("confirmation-email").textContent =
+            inputText.value;
+        } else {
+          inputText.classList.add("inputchanged");
+          alertMessage.style.display = "block";
+          successMessage.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
